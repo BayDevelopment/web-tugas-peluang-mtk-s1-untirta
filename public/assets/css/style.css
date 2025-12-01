@@ -1,0 +1,109 @@
+body {
+  background-color: #fdf1f6;
+  font-family: "Poppins", sans-serif;
+}
+.bg-native {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+/* navbar */
+#mainNavbar {
+  transition: all 0.4s ease; /* transisi smooth */
+}
+
+#mainNavbar.fixed-top {
+  transform: translateY(-20px);
+  opacity: 0;
+  animation: slideDown 0.4s forwards;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* akhir navbar */
+
+/* Dropdown modern */
+.dropdown-menu {
+  border-radius: 0.5rem; /* sudut membulat */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* shadow halus */
+  border: none; /* hapus border default */
+  min-width: 180px; /* lebar minimum */
+  padding: 0.5rem 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Hover pada item */
+.dropdown-item {
+  padding: 0.5rem 1.2rem;
+  color: #495057;
+  transition: background-color 0.2s, color 0.2s;
+  border-radius: 0.35rem;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: #fdeefa; /* biru bootstrap */
+  color: black;
+}
+
+/* Divider lebih tipis dan modern */
+.dropdown-divider {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0.25rem 0;
+}
+
+/* Animasi dropdown saat muncul */
+.dropdown-menu.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.dropdown-menu {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+/* Card */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Judul */
+.judul {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Paragraf */
+.paragraft {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* Tombol pink modern */
+.btn-pink {
+  background: linear-gradient(135deg, #ff4da6, #ff69b4);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 0.55rem 1.2rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-pink:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(255, 77, 166, 0.4);
+  color: #fff;
+  text-decoration: none;
+}

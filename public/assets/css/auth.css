@@ -1,0 +1,92 @@
+body {
+  background: linear-gradient(135deg, #ff7fb6, #ffd9ec);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.login-card {
+  background: #ffffffcc;
+  backdrop-filter: blur(12px);
+  border-radius: 25px;
+  padding: 45px 40px;
+  box-shadow: 0 10px 40px rgba(255, 90, 160, 0.25);
+  max-width: 420px;
+  width: 100%;
+  animation: fadeIn 0.7s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-title {
+  color: #ff4da6;
+  font-weight: 700;
+  font-size: 1.9rem;
+  letter-spacing: 1px;
+}
+
+.form-control {
+  border-radius: 14px;
+  padding: 12px 14px;
+  border: 1.5px solid #f4b6d6;
+  transition: 0.3s;
+}
+
+.form-control:focus {
+  border-color: #ff4da6;
+  box-shadow: 0 0 8px rgba(255, 77, 166, 0.4);
+}
+
+.btn-pink {
+  background-color: #ff4da6;
+  border-radius: 14px;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.btn-pink:hover {
+  background-color: #ff1c8b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 60, 150, 0.4);
+}
+
+.input-label {
+  font-weight: 600;
+  color: #ff4da6;
+}
+
+.logo-area {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo-circle {
+  width: 80px;
+  height: 80px;
+  background: #ff4da6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  margin: auto;
+  box-shadow: 0 6px 20px rgba(255, 77, 166, 0.4);
+}
