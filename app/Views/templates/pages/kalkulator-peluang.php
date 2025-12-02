@@ -1,7 +1,7 @@
 <?= $this->extend('templates/main') ?>
 <?= $this->section('content') ?>
 
-<section class="py-5 bg-light">
+<section class="py-5">
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="fw-bold">Kalkulator Peluang Interaktif</h2>
@@ -10,100 +10,169 @@
 
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <div class="card shadow-sm rounded-4 p-4">
-                    <h5 class="fw-bold mb-4 text-center">Masukkan Probabilitas Kejadian</h5>
+                <div class="card shadow rounded-4 border-0 p-4">
+                    <h2 class="h4 fw-bold">Kalkulator Peluang</h2>
+                    <p class="text-muted mb-2">Hitung peluang berdasarkan kejadian & ruang sampel.</p>
 
-                    <form id="eventForm">
-                        <div class="row g-3">
-                            <div class="col-md-4">
-                                <label for="probA" class="form-label">P(A)</label>
-                                <input type="number" step="0.01" min="0" max="1" class="form-control" id="probA" placeholder="0.0 - 1.0" required>
+                    <hr>
+
+                    <div class="row g-3">
+
+                        <!-- Input A -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Kejadian A (numerator)</label>
+                            <input id="num" type="number" class="form-control" value="1" min="0">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Total kejadian (denominator)</label>
+                            <input id="den" type="number" class="form-control" value="2" min="1">
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="col-12 d-flex flex-wrap gap-2 mt-2">
+
+                            <button id="calcBtn" class="btn btn-primary px-4">Hitung</button>
+
+                            <div class="btn-group">
+                                <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                                    Contoh Cepat
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" data-num="1" data-den="2">Koin (angka)</a></li>
+                                    <li><a class="dropdown-item" data-num="1" data-den="6">Dadu (4)</a></li>
+                                    <li><a class="dropdown-item" data-num="13" data-den="52">Kartu (hati)</a></li>
+                                </ul>
                             </div>
-                            <div class="col-md-4">
-                                <label for="probB" class="form-label">P(B)</label>
-                                <input type="number" step="0.01" min="0" max="1" class="form-control" id="probB" placeholder="0.0 - 1.0" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="probAB" class="form-label">P(A ∩ B)</label>
-                                <input type="number" step="0.01" min="0" max="1" class="form-control" id="probAB" placeholder="Opsional">
+
+                            <button id="clearBtn" class="btn btn-outline-danger px-4">Reset</button>
+                        </div>
+
+                        <!-- Hasil -->
+                        <div class="col-12 mt-3">
+                            <div id="resultBox" class="p-3 border rounded bg-white">
+                                <div id="fraction" class="fs-5 fw-bold mb-2">-- / --</div>
+                                <div id="percent" class="text-primary fw-semibold mb-2">--%</div>
+                                <div id="steps" class="small text-muted">Langkah perhitungan muncul di sini.</div>
                             </div>
                         </div>
 
-                        <div class="mt-4">
-                            <label class="form-label fw-bold">Pilih Jenis Perhitungan</label>
-                            <select class="form-select" id="calcType">
-                                <option value="union">Gabungan (A ∪ B)</option>
-                                <option value="intersection">Irisan (A ∩ B)</option>
-                                <option value="complementA">Komplemen (¬A)</option>
-                                <option value="conditional">Bersyarat P(A|B)</option>
-                            </select>
+                        <!-- Fitur lanjutan -->
+                        <div class="col-12 mt-4">
+                            <h5 class="fw-semibold">Fitur Lanjutan</h5>
+                            <div class="row g-2">
+                                <div class="col-md-4">
+                                    <button id="compBtn" class="btn btn-outline-primary w-100">Komplement (1 - P)</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button id="andBtn" class="btn btn-outline-success w-100">AND (A × B)</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button id="orBtn" class="btn btn-outline-warning w-100">OR (A + B)</button>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="d-grid mt-4">
-                            <button type="submit" class="btn btn-pink btn-sm">Hitung</button>
-                            <a href="<?= base_url('user/dashboard') ?>" class="btn btn-pink btn-sm mt-2">Kembali</a>
+                        <!-- Input B -->
+                        <div class="col-12 mt-3" id="andOrInputs" style="display:none;">
+                            <div class="row g-2">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Kejadian B (numerator)</label>
+                                    <input id="numB" type="number" min="0" value="1" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Kejadian B (denominator)</label>
+                                    <input id="denB" type="number" min="1" value="2" class="form-control">
+                                </div>
+                            </div>
                         </div>
-                    </form>
 
-                    <div class="mt-4">
-                        <h6 class="fw-bold">Hasil:</h6>
-                        <p id="result" class="fs-5 text-primary"></p>
                     </div>
+                    <a href="<?= base_url('user/dashboard') ?>" class="btn btn-pink btn-sm mt-2">Kembali</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<?= $this->endSection() ?>
+<?= $this->section('scripts') ?>
 <script>
-    document.getElementById('eventForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const P_A = parseFloat(document.getElementById('probA').value);
-        const P_B = parseFloat(document.getElementById('probB').value);
-        const P_AB = parseFloat(document.getElementById('probAB').value) || 0;
-        const calcType = document.getElementById('calcType').value;
-        let result;
-
-        // Validasi input
-        if (P_A < 0 || P_A > 1 || P_B < 0 || P_B > 1 || P_AB < 0 || P_AB > 1) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Input tidak valid',
-                text: 'Pastikan semua input berada di antara 0 dan 1'
-            });
-            return;
+    // Protect
+    function protect() {
+        if (!localStorage.getItem("loggedIn")) {
+            location.replace("login.html");
         }
+    }
 
-        switch (calcType) {
-            case 'union':
-                result = P_A + P_B - P_AB;
-                document.getElementById('result').innerText = `P(A ∪ B) = ${result.toFixed(2)}`;
-                break;
-            case 'intersection':
-                result = P_AB;
-                document.getElementById('result').innerText = `P(A ∩ B) = ${result.toFixed(2)}`;
-                break;
-            case 'complementA':
-                result = 1 - P_A;
-                document.getElementById('result').innerText = `P(¬A) = ${result.toFixed(2)}`;
-                break;
-            case 'conditional':
-                if (P_B === 0) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'P(B) = 0',
-                        text: 'P(A|B) tidak dapat dihitung karena P(B) = 0'
-                    });
-                    return;
-                }
-                result = P_AB / P_B;
-                document.getElementById('result').innerText = `P(A|B) = ${result.toFixed(2)}`;
-                break;
-            default:
-                document.getElementById('result').innerText = '';
+    // Math utilities
+    function gcd(a, b) {
+        while (b) {
+            [a, b] = [b, a % b]
         }
+        return a;
+    }
+
+    function simplify(a, b) {
+        let g = gcd(a, b);
+        return [a / g, b / g];
+    }
+
+    function showResult(n, d, stepTxt) {
+        const [sn, sd] = simplify(n, d);
+        fraction.innerHTML = `<strong>${sn}</strong>/<strong>${sd}</strong>`;
+        percent.textContent = ((n / d) * 100).toFixed(4) + "%";
+        steps.textContent = stepTxt;
+    }
+
+    // Actions
+    calcBtn.onclick = () => {
+        const n = Number(num.value);
+        const d = Number(den.value || 1);
+        const [sn, sd] = simplify(n, d);
+        showResult(n, d, `P(A) = ${n}/${d} = ${sn}/${sd}`);
+    };
+
+    clearBtn.onclick = () => {
+        num.value = 1;
+        den.value = 2;
+        andOrInputs.style.display = "none";
+        showResult(1, 2, "");
+    };
+
+    document.querySelectorAll(".dropdown-item").forEach(item => {
+        item.onclick = () => {
+            num.value = item.dataset.num;
+            den.value = item.dataset.den;
+            calcBtn.click();
+        };
     });
-</script>
 
+    compBtn.onclick = () => {
+        const n = Number(num.value);
+        const d = Number(den.value);
+        showResult(d - n, d, `P(¬A) = ${d-n}/${d}`);
+    };
+
+    andBtn.onclick = () => {
+        andOrInputs.style.display = "block";
+        const nA = Number(num.value),
+            dA = Number(den.value);
+        const nB = Number(numB.value),
+            dB = Number(denB.value);
+        showResult(nA * nB, dA * dB, `P(A∩B) = ${nA*nB}/${dA*dB}`);
+    };
+
+    orBtn.onclick = () => {
+        andOrInputs.style.display = "block";
+        const nA = Number(num.value),
+            dA = Number(den.value);
+        const nB = Number(numB.value),
+            dB = Number(denB.value);
+        const L = Math.abs(dA * dB) / gcd(dA, dB);
+        const A = nA * (L / dA);
+        const B = nB * (L / dB);
+        showResult(A + B, L, `P(A)+P(B) = ${A+B}/${L}`);
+    };
+</script>
 <?= $this->endSection() ?>

@@ -142,7 +142,7 @@
     }
 </style>
 
-<section class="py-5 bg-light">
+<section class="py-5">
     <div class="container">
 
         <!-- HEADER -->
@@ -256,7 +256,7 @@
 
                             <p class="tiny mb-3" id="result-message"></p>
 
-                            <button class="btn-main me-2" onclick="restartQuiz()">Coba Lagi</button>
+                            <!-- <button class="btn-main me-2" onclick="restartQuiz()">Coba Lagi</button> -->
                             <button class="btn-main btn-sm" onclick="backToIntro()">Kembali</button>
 
                             <hr>

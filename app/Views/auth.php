@@ -16,7 +16,22 @@
 </head>
 
 <body>
+    <style>
+        .btn-outline-pink {
+            border: 2px solid #ff4da6;
+            color: #ff4da6;
+            font-weight: 600;
+            border-radius: 10px;
+            transition: 0.25s ease;
+        }
 
+        .btn-outline-pink:hover {
+            background: #ff4da6;
+            color: #fff;
+            box-shadow: 0 0 10px rgba(255, 77, 166, 0.6);
+            transform: translateY(-2px);
+        }
+    </style>
     <div class="login-card">
 
         <div class="logo-area">
@@ -58,7 +73,14 @@
             </div>
 
             <button type="submit" class="btn btn-pink w-100 mt-2">Masuk</button>
+
+            <div class="text-center mt-3">
+                <a href="<?= base_url('auth/register') ?>" class="btn btn-outline-pink w-100">
+                    Buat Akun Baru
+                </a>
+            </div>
         </form>
+
 
     </div>
 
@@ -100,6 +122,23 @@
                 timer: 4000
             });
         <?php endif; ?>
+
+        const form = document.querySelector("form");
+        const submitBtn = document.querySelector("button[type='submit']");
+        const inputs = document.querySelectorAll("input");
+
+        form.addEventListener("submit", function(e) {
+
+            // Tombol berubah menjadi loading
+            submitBtn.innerHTML = `
+            <span class="spinner-border spinner-border-sm me-2"></span>
+            Memproses...
+        `;
+            submitBtn.disabled = true;
+
+            // Semua input jadi readonly
+            inputs.forEach(input => input.setAttribute("readonly", true));
+        });
     </script>
 
 

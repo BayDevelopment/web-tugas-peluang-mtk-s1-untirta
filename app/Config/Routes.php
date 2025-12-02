@@ -5,13 +5,21 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+
+// Jika akses root "/", arahkan ke login (juga pakai filter noauth)
 $routes->get('/', function () {
     return redirect()->to('auth/login');
+}, ['filter' => 'noauth']);
+
+// Cegah user/admin yang sudah login membuka halaman login
+$routes->group('auth', ['filter' => 'noauth'], function ($routes) {
+    $routes->get('login', 'AuthController::index');
+    $routes->post('login', 'AuthController::aksi_login');
+    $routes->get('register', 'AuthController::register');
+    $routes->post('register', 'AuthController::aksi_register');
 });
-$routes->get('/auth/login', 'AuthController::index');
-$routes->post('/auth/login', 'AuthController::aksi_login');
+// logout
 $routes->get('/auth/logout', 'AuthController::logout');
-$routes->get('/dashboard', 'Dashboard::index', ['filter' => 'login']);
 
 // Admin
 $routes->group('admin', ['filter' => 'role:admin'], function ($routes) {

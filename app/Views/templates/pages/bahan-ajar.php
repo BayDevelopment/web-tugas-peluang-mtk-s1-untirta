@@ -1,7 +1,7 @@
 <?= $this->extend('templates/main') ?>
 <?= $this->section('content') ?>
 
-<section class="py-5 bg-light">
+<section class="py-5">
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="fw-bold">Bahan Ajar</h2>
@@ -31,7 +31,8 @@
         </div>
     </div>
 </section>
-
+<?= $this->endSection() ?>
+<?= $this->section('scripts') ?>
 <script>
     function togglePreview(id) {
         const preview = document.getElementById(id);
